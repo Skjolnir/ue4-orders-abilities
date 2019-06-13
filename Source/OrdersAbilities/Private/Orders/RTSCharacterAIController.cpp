@@ -19,9 +19,9 @@ ARTSCharacterAIController::ARTSCharacterAIController(const FObjectInitializer& O
     PrimaryActorTick.bCanEverTick = true;
 }
 
-void ARTSCharacterAIController::Possess(APawn* InPawn)
+void ARTSCharacterAIController::OnPossess(APawn* InPawn)
 {
-    Super::Possess(InPawn);
+    Super::OnPossess(InPawn);
 
     // Load assets.
     StopOrder.LoadSynchronous();
