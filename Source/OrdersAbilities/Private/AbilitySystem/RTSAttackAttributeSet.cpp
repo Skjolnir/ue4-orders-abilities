@@ -28,56 +28,56 @@ void URTSAttackAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
     DOREPLIFETIME_CONDITION_NOTIFY(URTSAttackAttributeSet, OutgoingDamageMultiplier, COND_None, REPNOTIFY_Always);
 }
 
-void URTSAttackAttributeSet::OnRep_Damage()
+void URTSAttackAttributeSet::OnRep_Damage(const float& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Damage);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Damage, OldValue);
 }
 
 const FGameplayAttribute& URTSAttackAttributeSet::DamageAttribute()
 {
-    static FGameplayAttribute Attribute(FindFieldChecked<UProperty>(
+    static FGameplayAttribute Attribute(FindFieldChecked<FProperty>(
         URTSAttackAttributeSet::StaticClass(), GET_MEMBER_NAME_CHECKED(URTSAttackAttributeSet, Damage)));
     return Attribute;
 }
 
-void URTSAttackAttributeSet::OnRep_Cooldown()
+void URTSAttackAttributeSet::OnRep_Cooldown(const float& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Cooldown);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Cooldown, OldValue);
 }
 
 const FGameplayAttribute& URTSAttackAttributeSet::CooldownAttribute()
 {
-    static FGameplayAttribute Attribute(FindFieldChecked<UProperty>(
+    static FGameplayAttribute Attribute(FindFieldChecked<FProperty>(
         URTSAttackAttributeSet::StaticClass(), GET_MEMBER_NAME_CHECKED(URTSAttackAttributeSet, Cooldown)));
     return Attribute;
 }
 
-void URTSAttackAttributeSet::OnRep_Range()
+void URTSAttackAttributeSet::OnRep_Range(const float& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Range);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, Range, OldValue);
 }
 
 const FGameplayAttribute& URTSAttackAttributeSet::RangeAttribute()
 {
-    static FGameplayAttribute Attribute(FindFieldChecked<UProperty>(
+    static FGameplayAttribute Attribute(FindFieldChecked<FProperty>(
         URTSAttackAttributeSet::StaticClass(), GET_MEMBER_NAME_CHECKED(URTSAttackAttributeSet, Range)));
     return Attribute;
 }
 
-void URTSAttackAttributeSet::OnRep_OutgoingDamageMultiplier()
+void URTSAttackAttributeSet::OnRep_OutgoingDamageMultiplier(const float& OldValue)
 {
-    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, OutgoingDamageMultiplier);
+    GAMEPLAYATTRIBUTE_REPNOTIFY(URTSAttackAttributeSet, OutgoingDamageMultiplier, OldValue);
 }
 
 const FGameplayAttribute& URTSAttackAttributeSet::OutgoingDamageMultiplierAttribute()
 {
     static FGameplayAttribute Attribute(
-        FindFieldChecked<UProperty>(URTSAttackAttributeSet::StaticClass(),
+        FindFieldChecked<FProperty>(URTSAttackAttributeSet::StaticClass(),
                                     GET_MEMBER_NAME_CHECKED(URTSAttackAttributeSet, OutgoingDamageMultiplier)));
     return Attribute;
 }
 
-bool URTSAttackAttributeSet::ShouldInitProperty(bool FirstInit, UProperty* PropertyToInit) const
+bool URTSAttackAttributeSet::ShouldInitProperty(bool FirstInit, FProperty* PropertyToInit) const
 {
     // We do not want the health property to change when the attribute sets properties where initialized using a curve
     // table.

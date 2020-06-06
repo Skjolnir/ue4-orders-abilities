@@ -24,24 +24,24 @@ public:
     static const float MAX_OUTGOING_DAMAGE_MULTIPLIER;
 
     /** Default attack damage. */
-    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = OnRep_Damage)
+    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = "OnRep_Damage")
     float Damage;
     UFUNCTION()
-    void OnRep_Damage();
+    void OnRep_Damage(const float& OldValue);
     static const FGameplayAttribute& DamageAttribute();
 
     /** Time before the attack can be used again, in seconds. */
-    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = OnRep_Cooldown)
+    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = "OnRep_Cooldown")
     float Cooldown;
     UFUNCTION()
-    void OnRep_Cooldown();
+    void OnRep_Cooldown(const float& OldValue);
     static const FGameplayAttribute& CooldownAttribute();
 
     /** Attack range, in cm. */
-    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = OnRep_Range)
+    UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = "OnRep_Range")
     float Range;
     UFUNCTION()
-    void OnRep_Range();
+    void OnRep_Range(const float& OldValue);
     static const FGameplayAttribute& RangeAttribute();
 
     /**
@@ -51,11 +51,11 @@ public:
     UPROPERTY(Category = "Attributes|Attack", BlueprintReadOnly, ReplicatedUsing = OnRep_OutgoingDamageMultiplier)
     float OutgoingDamageMultiplier;
     UFUNCTION()
-    void OnRep_OutgoingDamageMultiplier();
+    void OnRep_OutgoingDamageMultiplier(const float& OldValue);
     static const FGameplayAttribute& OutgoingDamageMultiplierAttribute();
 
     //~ Begin UAttributeSet Interface
-    virtual bool ShouldInitProperty(bool FirstInit, UProperty* PropertyToInit) const override;
+    virtual bool ShouldInitProperty(bool FirstInit, FProperty* PropertyToInit) const override;
     virtual void PreAttributeBaseChange(const FGameplayAttribute& Attribute, float& NewValue) const override;
     //~ End UAttributeSet Interface
 
